@@ -3,15 +3,15 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const PORT = 8080;
+const PORT = process.env.PORT || 7002;
 const userRouter = require('./routes/userRouter.js')
 const cors = require('cors');
 
-/*Conection DB (está exposto para que seja possivel testar em aula*/
-//const db_user = process.env.DB_USER;
-//const db_pass = process.env.DB_PASS;
+//Conection DB 
+const db_user = process.env.DB_USER;
+const db_pass = process.env.DB_PASS;
 
-mongoose.connect(`mongodb+srv://thiagojorge:HulIVrjOGspLseJt@formcadastro.6vbqi.mongodb.net/?retryWrites=true&w=majority&appName=formCadastro`);
+mongoose.connect(`mongodb+srv://${db_user}:${db_pass}@formcadastro.6vbqi.mongodb.net/?retryWrites=true&w=majority&appName=formCadastro`);
 
 const db = mongoose.connection;
 
